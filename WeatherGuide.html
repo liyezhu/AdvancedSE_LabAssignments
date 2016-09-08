@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="" data-ng-app="GoogleDirection" data-ng-app="">
+<head>
+    <meta t="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js" type="application/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWhSE1HAi753_M8rcFTfcbBXUQInf8y6c&v=3.exp&sensor=true"></script>
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        input[type="text"]{
+        padding: 10px;
+        border: solid 1px #dcdcdc;
+        transition: box-shadow 0.3s, border 0.3s;
+            border-radius: inherit;
+        }
+        input[type="text"]:focus{
+            border: solid 1px #707070;
+            box-shadow: 0 0 5px 1px #969696;
+        }
+
+        button{
+            border-top: 1px solid #96d1f8;
+            background: #65a9d7;
+            background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+            background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+            background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+            background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+            background: -o-linear-gradient(top, #3e779d, #65a9d7);
+            padding: 5px 10px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+            -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+            box-shadow: rgba(0,0,0,1) 0 1px 0;
+            text-shadow: rgba(0,0,0,.4) 0 1px 0;
+            color: white;
+            font-size: 14px;
+            font-family: Georgia, serif;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+        button:hover {
+            border-top-color: #28597a;
+            background: #28597a;
+            color: #ccc;
+        }
+
+
+        .startloc{
+            float: left;
+            width:50%;
+        }
+        .endloc{
+            float:right;
+            width:50%;
+        }
+        .weatherModule {
+            background: #f2f2f2;
+            height: 150px;
+            width: 250px;
+            border: 1px dashed #ccc;
+            padding: 1em;
+        }
+        .location_box{
+            color: beige;
+            font-size: x-large;
+        }
+
+        .currentConditions {
+            float: left;
+        }
+        .weatherModule {
+            padding: 1em;
+        }
+
+        .currentIcon {
+            float: left;
+            margin: 0 .75em;
+        }
+        body{
+            background-image: url("weather.png");
+            background-repeat: no-repeat;
+            background-size:cover
+        }
+
+        .stateslist{
+            height: 29px;
+            overflow: hidden;
+            width: 240px;
+        }
+    </style>
+</head>
+
+<body>
+<div ng-app="weather" ng-controller="weatherctrl">
+    <div class="startloc">
+        <p class="location_box">Enter start location <input type="text"  ng-model="startlocation" id="startlocation"/></p>
+        <p class="location_box">Select state</p>
+        <select id="startstate" ng-model="startstate" class="stateslist">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+        </select>
+        <button id="buttonstart" ng-click="getstartWeather()"> Show Weather </button>
+        <br/>
+        <br/>
+        <div class="weatherModule">
+        <p class="currentConditions" ng-bind-html-unsafe="currentweather.html"></p>
+        <div class="currentIcon" ng-bind-html-unsafe="currentIcon.html"></div>
+        </div>
+    </div>
+    <div class="endloc">
+    <p class="location_box">Enter end location <input type="text"  ng-model="endlocation" id="endlocation" /></p>
+        <p class="location_box">Select state</p>
+        <select id="endstate" ng-model="endstate" class="stateslist">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+        </select>
+        <button id="buttonend" ng-click="getendWeather()"> Show Weather </button>
+            <br/>
+            <br/>
+            <div class="weatherModule">
+                <p class="currentConditions" ng-bind-html-unsafe="currentweatherend.html"></p>
+                <div class="currentIcon" ng-bind-html-unsafe="currentIconend.html"></div>
+            </div>
+        </div>
+</div>
+
+</body>
+</html>
+
+
+<script>
+
+
+
+
+    angular.module('weather', [])
+            .controller('weatherctrl', function($scope, $http) {
+                $scope.getstartWeather = function() {
+                    $http.get('https://api.wunderground.com/api/36b799dc821d5836/conditions/q/'+$scope.startstate+'/'+$scope.startlocation+'.json').success(function(data) {
+                        console.log(data);
+                        temp = data.current_observation.temp_f;
+                        icon = data.current_observation.icon_url;
+                        weather = data.current_observation.weather;
+                        console.log(temp);
+                        $scope.currentweather = {
+                            html: "Currently " + temp + " &deg; F and " + weather + ""
+                        }
+                        $scope.currentIcon = {
+                            html: "<img src='" + icon + "'/>"
+                        }
+
+                    })
+                }
+                $scope.getendWeather = function() {
+                    $http.get('https://api.wunderground.com/api/36b799dc821d5836/conditions/q/'+$scope.endstate+'/'+$scope.endlocation+'.json').success(function(data) {
+                        console.log(data);
+                        temp = data.current_observation.temp_f;
+                        icon = data.current_observation.icon_url;
+                        weather = data.current_observation.weather;
+                        console.log(temp);
+                        $scope.currentweatherend = {
+                            html: "Currently " + temp + " &deg; F and " + weather + ""
+                        }
+                        $scope.currentIconend = {
+                            html: "<img src='" + icon + "'/>"
+                        }
+
+                    })
+                }
+            });
+
+
+</script>
