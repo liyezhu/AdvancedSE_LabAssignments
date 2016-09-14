@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>Login page for checking directions and weather</title>
+    <style type="text/css">
+        body {
+            background-color: #f4f4f4;
+            color: #5a5656;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.5em;
+        }
+        a { text-decoration: none; }
+        h1 { font-size: 1em; }
+        h1, p {
+            margin-bottom: 10px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .uppercase { text-transform: uppercase; }
+
+        /* ---------- LOGIN ---------- */
+        #login {
+            margin: 50px auto;
+            width: 300px;
+        }
+
+        form fieldset input[type="text"], input[type="password"] {
+            background-color: #e5e5e5;
+            border: none;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            color: #5a5656;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            height: 50px;
+            outline: none;
+            padding: 0px 10px;
+            width: 280px;
+            -webkit-appearance:none;
+        }
+        form fieldset input[type="submit"] {
+            background-color: forestgreen;
+            border: none;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            color: #f4f4f4;
+            cursor: pointer;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            height: 50px;
+            text-transform: uppercase;
+            width: 300px;
+            -webkit-appearance:none;
+        }
+        form fieldset a:hover { text-decoration: underline; }
+
+        .welcome-message {
+            color: forestgreen;
+        }
+        .register{
+            color: forestgreen;
+            font-size: medium;
+            cursor: pointer;
+        }
+        #error_message{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="login">
+    <center><h1 class="welcome-message"><strong>Welcome!!! </strong>Login to your account now.</h1></center>
+    <form action="javascript:void(0);" method="get">
+        <fieldset>
+            <p><input id="userName" type="text" required value="Username" onBlur="if(this.value=='')this.value='Username'" onFocus="if(this.value=='Username')this.value='' "></p>
+            <p><input id="userPassword" type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "></p>
+            <p><input type="submit" value="Login" onClick="check()"></p>
+            <span id="error_message"> </span>
+            <h1>Not having an account? <a class="register" href="RegisterPage.html">Register</a></h1>
+            <div id="status"></div>
+            <p><input onClick="login()" type="submit" value="Login with Facebook"></p>
+        </fieldset>
+    </form>
+</div> <!-- end login -->
+</body>
+</html>
+<script>
+    // check if stored data from register-form is equal to entered data in the   login-form
+    function check() {
+
+        // stored data from the register-form
+        var storedName = localStorage.getItem('userName');
+        var storedPassword = localStorage.getItem('userPassword');
+
+        // entered data from the login-form
+        var userName = document.getElementById('userName');
+        var userPassword = document.getElementById('userPassword');
+
+        // check if stored data from register-form is equal to data from login form
+        if(userName.value !== storedName || userPassword.value !== storedPassword) {
+            document.getElementById("error_message").innerHTML="Invalid credentials. Please try again ";
+            //alert('ERROR');
+        }else {
+            self.location="welcome.html";
+            //window.navigate("directions.html");
+        }
+    }
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '2135410813349850',
+            xfbml: true,
+            version: 'v2.7'
+        });
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                document.getElementById('status').innerHTML = 'We are connected to FaceBook';
+            } else if (response.status === 'not_authorized') {
+                document.getElementById('status').innerHTML = 'We are not connected to FaceBook';
+            } else{
+                document.getElementById('status').innerHTML = 'We are not logged into FaceBook';
+            }
+        });
+    };
+    (function(thisdocument, scriptelement, id) {
+        var js, fjs = thisdocument.getElementsByTagName(scriptelement)[0];
+        if (thisdocument.getElementById(id)) return;
+
+        js = thisdocument.createElement(scriptelement); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js"; //you can use
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+    function  login() {
+        FB.login(function (response) {
+            if (response.status === 'connected') {
+                self.location="welcome.html";
+                document.getElementById('status').innerHTML = 'We are connected to FaceBook';
+            } else if (response.status === 'not_authorized') {
+                document.getElementById('status').innerHTML = 'We are not connected to FaceBook';
+            } else{
+                document.getElementById('status').innerHTML = 'We are not logged into FaceBook';
+            }
+        });
+
+    }
+
+
+</script>
+
+

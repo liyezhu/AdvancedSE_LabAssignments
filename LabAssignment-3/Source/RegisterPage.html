@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>Login page for checking directions and weather</title>
+    <style type="text/css">
+        body {
+            background-color: #f4f4f4;
+            color: #5a5656;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.5em;
+        }
+        a { text-decoration: none; }
+        h1 { font-size: 1em; }
+        h1, p {
+            margin-bottom: 10px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .uppercase { text-transform: uppercase; }
+
+        /* ---------- LOGIN ---------- */
+        #login {
+            margin: 50px auto;
+            width: 300px;
+        }
+
+        form fieldset input[type="text"], input[type="password"] {
+            background-color: #e5e5e5;
+            border: none;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            color: #5a5656;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            height: 50px;
+            outline: none;
+            padding: 0px 10px;
+            width: 280px;
+            -webkit-appearance:none;
+        }
+        form fieldset input[type="submit"] {
+            background-color: forestgreen;
+            border: none;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            color: #f4f4f4;
+            cursor: pointer;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            height: 50px;
+            text-transform: uppercase;
+            width: 300px;
+            -webkit-appearance:none;
+        }
+        form fieldset a:hover { text-decoration: underline; }
+
+        .welcome-message {
+            color: forestgreen;
+        }
+        .register{
+            color: forestgreen;
+            font-size: medium;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="login">
+    <center><h1 class="welcome-message"><strong>Welcome!!! </strong>Login to your account now.</h1></center>
+    <form action="javascript:void(0);" method="get">
+        <fieldset>
+            <p><input type="text" required value="FirstName" onBlur="if(this.value=='')this.value='FirstName'" onFocus="if(this.value=='FirstName')this.value='' "></p>
+            <p><input type="text" required value="LastName" onBlur="if(this.value=='')this.value='LastName'" onFocus="if(this.value=='LastName')this.value='' "></p>
+            <p><input id="userName" type="text" required value="UserName" onBlur="if(this.value=='')this.value='UserName'" onFocus="if(this.value=='UserName')this.value='' "></p>
+            <p>Please enter a password for your account:<input id="userPassword" type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "></p>
+            <p><input type="submit" value="Register" onClick="store()"></p>
+        </fieldset>
+    </form>
+</div> <!-- end login -->
+</body>
+</html>
+<script>
+    var userName = document.getElementById('userName');
+    var userPassword = document.getElementById('userPassword');
+
+    // storing input from register-form
+    function store() {
+        localStorage.setItem('userName', userName.value);
+        localStorage.setItem('userPassword', userPassword.value);
+        self.location="LoginPage.html";
+        //window.navigate("LoginPage.html");
+        //alert("back");
+        //window.history.back(-1);
+    }
+
+</script>
+
+
