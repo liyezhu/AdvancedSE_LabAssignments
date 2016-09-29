@@ -1,0 +1,23 @@
+<ion-view title="AppHome" id="page3">
+    <ion-content padding="true" style="background: url(img/homepg2.png) no-repeat center;background-size:cover;" class="has-header">
+        <!--<div class="list card" ng-repeat="video in videos">
+      <div class="item item-text-wrap">
+        <h2>{{video.snippet.title}}</h2>
+        <p>{{video.snippet.publishedAt | limitTo: 10}}</p>
+      </div>
+      <div class="item item-image">
+        <img ng-src="{{video.snippet.thumbnails.high.url}}">
+      </div>
+
+    </div> -->
+        
+        <h3 style="color:##0C0F4E;">Bored? Watch today's Youtube top videos</h3>
+        
+        <ion-list>
+      <ion-item ng-repeat="i in videos" type="item-text-wrap" >
+             <a style="color:blue;text-decoration:underline;">https://www.youtube.com/results?<br>search_query={{i.id.videoId}}</a>
+        </ion-item>
+    </ion-list>
+        
+    </ion-content>
+</ion-view>
