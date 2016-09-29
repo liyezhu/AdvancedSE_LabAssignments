@@ -1,0 +1,9 @@
+/* Empty. Add your own CSS if you like */
+
+a:hover { 
+color: pink; 
+}
+a {
+color:pink;
+text-decoration: underline;
+}
