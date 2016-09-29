@@ -1,0 +1,28 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# Explicit paths specified without -i or -o; assuming --only paths...
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   WeatherGuide-screenshot.png
+#
+# Changes not staged for commit:
+#	modified:   ../../README.md
+#
+# Untracked files:
+#	DirectionGuide-screenshot.png
+#	IndexPage-screenshot.png
+#	JSLint-Login.png
+#	JSLint-Register.png
+#	LoginPage-screenshot.png
+#	Mockup-DirectionGuide.png
+#	Mockup-IndexPage.png
+#	Mockup-RegisterPage.png
+#	Mockup-WeatherGuide.png
+#	Mockup-loginpage.png
+#	RegisterPage-screenshot.png
+#	../Source/
+#
+
