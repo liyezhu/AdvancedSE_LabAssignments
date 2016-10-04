@@ -1,5 +1,10 @@
 # AdvancedSE_LabAssignments
 
+<b>Lab Assignment-6</b>
+https://github.com/meghanagabhushan/AdvancedSE_LabAssignments/tree/master/LabAssignment-6<br>
+wiki page:
+https://github.com/meghanagabhushan/AdvancedSE_LabAssignments/wiki/Lab-Assignment-6<br><br>
+
 <b>Lab Assignment-5</b>
 https://github.com/meghanagabhushan/AdvancedSE_LabAssignments/tree/master/LabAssignment-5<br>
 wiki page:
