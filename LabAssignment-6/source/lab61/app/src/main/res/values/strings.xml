@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">lab61</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_gmaps">Map</string>
+    <string name="title_activity_google_maps">Map</string>
+</resources>

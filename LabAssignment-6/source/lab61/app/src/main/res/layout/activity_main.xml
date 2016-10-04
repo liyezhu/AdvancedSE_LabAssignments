@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/icon"
+    tools:context="com.example.meghanagabhushan.lab61.MainActivity"
+    android:id="@+id/signup">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up Page"
+        android:id="@+id/headingSignUp"
+        android:textStyle="normal|bold|italic"
+        android:focusable="true"
+        android:textColor="#230925" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="enter full name "
+        android:ems="10"
+        android:editable="true"
+        android:id="@+id/fullName"
+        android:textColor="#b933b2"
+        android:textStyle="bold|italic"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/btn_camera" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="enter user name "
+        android:ems="10"
+        android:id="@+id/userName"
+        android:textStyle="bold|italic"
+        android:textColor="#c134c1"
+        android:editable="true"
+        android:layout_below="@+id/fullName"
+        android:layout_toStartOf="@+id/btn_camera" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:text="enter password here"
+        android:ems="10"
+        android:id="@+id/passWord"
+        android:enabled="true"
+        android:password="true"
+        android:layout_below="@+id/userName"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sign up!!"
+        android:id="@+id/button"
+        android:onClick="buttonOnClick"
+        android:textStyle="bold|italic"
+        android:textColor="#be1cae"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/passWord" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload from gallery"
+        android:id="@+id/btn_gallery"
+        android:layout_below="@+id/headingSignUp"
+        android:layout_alignParentEnd="true"
+        android:nestedScrollingEnabled="false"
+        android:onClick="buttonGallery"
+        android:textStyle="bold|italic"
+        android:textColor="#bd3ab6" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="click picture"
+        android:id="@+id/btn_camera"
+        android:onClick="buttonPhoto"
+        android:textColor="#c332c6"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/btn_gallery"
+        android:layout_alignStart="@+id/btn_gallery"
+        android:layout_alignEnd="@+id/btn_gallery" />
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/btn_gallery"
+        android:layout_toStartOf="@+id/button"
+        android:layout_alignParentEnd="false"
+        android:focusable="false"
+        android:visibility="visible" />
+
+</RelativeLayout>
