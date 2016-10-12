@@ -1,0 +1,16 @@
+<ion-view title="Top videos" id="page5">
+    <ion-content padding="true" style="background: url(img/registerpg2.jpg) no-repeat center;background-size:cover;" class="has-header">
+        <h2>Enter the interest of your choice in the below box</h2>
+        <label class="item item-input" id="joinClass-input2">
+                <input id="queryName" type="text" placeholder="">
+            </label>
+        <button id="joinClass-button6" class="button button-positive  button-block" ng-click="videoSearch()" >Go</button>
+        <ion-list>
+      <ion-item ng-repeat="i in videos" type="item-text-wrap" >
+             <a ng-href="www.youtube.com/embed/{{i.id.videoId}}" style="color:blue;text-decoration:underline;">{{i.snippet.title}}</a>
+            <h5>{{i.snippet.description}}</h5>
+        </ion-item>
+    </ion-list>
+        <p>Top 5 results for your search</p>
+    </ion-content>
+</ion-view>
