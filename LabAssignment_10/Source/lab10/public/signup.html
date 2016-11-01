@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <title>Registration Page</title>
+      <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body ng-controller="TodoController">
+<div class="wrap" style="width:30%;">
+    <!-- strat-contact-form -->
+    <div class="contact-form" style="width:100%;">
+        <!-- start-form -->
+                   <h1>Welcome Admin!!</h1>
+            <h1>Register an Employee!!</h1>
+            <ul>
+                <li style="width:100%">
+                    <input  style="width:100%;" type="text" class="textbox1" name="fname" placeholder="First Name" ng-model="firstName" required />
+                    <span class="form_hint">Enter a First Name</span>
+                </li>
+                <li style="width:100%;">
+                    <input style="width:100%" type="text" class="textbox1" name="lname" ng-model="lastName" placeholder="Last Name" required />
+                    <span class="form_hint">Enter a Last Name</span>
+
+                </li>
+                <li style="width:100%;">
+                    <input style="width:100%" type="email" class="textbox1" name="email" ng-model="credit" placeholder="example@mail.com" required />
+                    <span class="form_hint">Enter Employee Email</span>
+
+                </li>
+                <li style="width:100%;">
+                    <input style="width:100%" type="text" class="textbox1" name="empid" ng-model="no" placeholder="emp-id 6 digits[0-9]" required />
+                    <span class="form_hint">Assign Employee ID</span>
+
+                </li>
+            </ul>
+            <button ng-click="addSubject(no,firstName,credit,lastName)" onclick=window.location.href="index.html" class="goButton" style="background: darkblue;
+		width: 100%;
+		padding: 2px;
+		font-size: 1.3em;
+		letter-spacing:1px;
+		color: #fff;
+		margin: 10px 0 10px;">Add</button>
+            <div class="clear"></div>
+            <div class="clear"></div>
+               <!-- end-form -->
+        <!-- start-account -->
+        <div class="clear"></div>
+    </div>
+    <!-- end-contact-form -->
+    <div class="footer">
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-resource.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-sanitize.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+</body>
+</html>
